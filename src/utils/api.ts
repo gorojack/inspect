@@ -94,6 +94,7 @@ export const useDeviceApi = (initOrigin?: string) => {
       action?: string;
       quickFind?: boolean;
       fastQuery?: boolean;
+      args?: String;
     }) => {
       return jsonRpc<{ message: string; action: string; result: boolean }>(
         `execSelector`,

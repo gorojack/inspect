@@ -226,6 +226,10 @@ const actionOptions: {
     value: undefined,
   },
   {
+    label: 'setText',
+    value: 'setText',
+  },
+  {
     value: 'click',
     label: 'click',
   },
@@ -258,6 +262,7 @@ const clickAction = shallowReactive({
   selector: ``,
   action: 'click',
   quickFind: false,
+  args: '',
 });
 const execSelector = useTask(async () => {
   const result = await api.execSelector({
@@ -373,6 +378,18 @@ const placeholder = `
         maxRows: 10,
       }"
       placeholder="请输入合法的选择器"
+    />
+    <NInput
+      v-if="clickAction.action === 'setText'"
+      v-model:value="clickAction.args"
+      :disabled="execSelector.loading"
+      type="textarea"
+      class="gkd_code"
+      :autosize="{
+        minRows: 4,
+        maxRows: 10,
+      }"
+      placeholder="输入参数"
     />
     <div h-15px></div>
     <NSpace>
